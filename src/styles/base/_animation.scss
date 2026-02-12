@@ -1,0 +1,10 @@
+@use '../settings/variables';
+
+.animate-fade {
+  opacity: 0;
+  transition: opacity variables.$s-base;
+
+  &.active {
+    opacity: 1;
+  }
+}

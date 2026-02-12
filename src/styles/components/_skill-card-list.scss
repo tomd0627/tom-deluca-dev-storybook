@@ -1,0 +1,88 @@
+@use '../base/mixins';
+@use '../settings/variables';
+
+.skill-card-list {
+  @include mixins.mq-up(medium) {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  &__item {
+    background: variables.$c-white;
+    border-radius: 0.5rem;
+    margin-block: 0 2rem;
+    margin-inline: 0;
+    padding-block: 2rem;
+    padding-inline: 2rem;
+    position: relative;
+
+    &:last-child {
+      margin-block: 0;
+      margin-inline: 0;
+    }
+
+    @include mixins.mq-up(large) {
+      flex: 1 calc(50% - 2rem);
+    }
+
+    &__icon {
+      font-size: 3rem;
+      inset-block-start: -1rem;
+      inset-inline-end: 1rem;
+      position: absolute;
+
+      @include mixins.mq-up(medium) {
+        font-size: 6rem;
+        inset-block-start: -2rem;
+      }
+
+      @include mixins.mq-up(x-large) {
+        inset-inline-end: 2rem;
+      }
+
+      .skill-card-list__item--core-skills & {
+        color: variables.$c-blue;
+      }
+
+      .skill-card-list__item--specialized-skills & {
+        color: variables.$c-yellow;
+      }
+
+      .skill-card-list__item--professional-skills & {
+        color: variables.$c-green;
+      }
+    }
+
+    h3 {
+      margin-block: 0 1.5rem;
+      margin-inline: 0;
+    }
+
+    ul {
+      margin-block: 0;
+      margin-inline-start: 1.2rem;
+      padding-block: 0;
+      padding-inline: 0;
+
+      @include mixins.mq-up(medium) {
+        display: flex;
+        flex-flow: row wrap;
+      }
+
+      li {
+        color: variables.$c-muted;
+        font-size: variables.$fs-base;
+        line-height: variables.$lh-relaxed;
+        margin-block: 0 0.6rem;
+        margin-inline: 0;
+
+        @include mixins.mq-up(medium) {
+          flex: 1 50%;
+          padding-inline-end: 3rem;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,201 @@
+@use '../base/mixins';
+@use '../settings/variables';
+
+.header {
+  background: variables.$c-blue-75;
+  color: variables.$c-white;
+  inset-block-start: 0;
+  inset-inline: 0;
+  padding-block: 1.5em;
+  padding-inline: 0;
+  position: fixed;
+  transition: transform variables.$s-base;
+  z-index: variables.$z-10;
+
+  .body-scroll-down & {
+    transform: translateY(-100%);
+  }
+
+  a {
+    color: variables.$c-white;
+  }
+
+  &__inner {
+    align-items: center;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    min-block-size: 1.875rem;
+    position: relative;
+
+    @include mixins.mq-up(large) {
+      min-block-size: 2.25rem;
+    }
+  }
+
+  &__skip-to-content {
+    @include mixins.button($bg: variables.$c-blue, $fg: variables.$c-white);
+
+    position: absolute;
+    transform: translateY(-150%);
+    transition:
+      background variables.$s-base,
+      border-color variables.$s-base,
+      color variables.$s-base,
+      transform variables.$s-base;
+
+    &:focus-visible {
+      transform: translateY(0);
+    }
+  }
+
+  &__logo {
+    font-family: variables.$ff-heading;
+    font-size: 1.5rem;
+    font-weight: variables.$fw-bold;
+
+    @include mixins.mq-up(large) {
+      font-size: 2rem;
+    }
+  }
+
+  &__menu-toggle {
+    background: none;
+    border: 0;
+    cursor: pointer;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 6px;
+    justify-content: center;
+    padding-block: 0;
+    padding-inline: 0;
+    position: relative;
+    block-size: 30px;
+    inline-size: 40px;
+
+    .bar {
+      background: variables.$c-white;
+      block-size: 3px;
+      display: block;
+      inline-size: 100%;
+      opacity: 1;
+      transform: translate(0) rotate(0);
+      transition:
+        opacity variables.$s-base,
+        transform variables.$s-base;
+
+      .show-nav & {
+        &--top {
+          transform: translateY(9px) rotate(45deg);
+        }
+
+        &--mid {
+          opacity: 0;
+        }
+
+        &--bot {
+          transform: translateY(-9px) rotate(-45deg);
+        }
+      }
+    }
+
+    @include mixins.mq-up(large) {
+      display: none;
+    }
+  }
+
+  &__nav {
+    background: variables.$c-blue-75;
+    inset-block-start: calc(100% + 1.5rem);
+    inset-inline: 0;
+    margin-block: 0;
+    margin-inline: -1.5rem;
+    max-block-size: 0;
+    overflow: hidden;
+    position: absolute;
+    transition: max-block-size variables.$s-base;
+
+    .show-nav & {
+      max-block-size: 20rem;
+    }
+
+    .body-scroll-down & {
+      transform: translateY(-100%);
+    }
+
+    @include mixins.mq-up(large) {
+      background: none;
+      margin-block: 0;
+      margin-inline: 0;
+      max-block-size: none;
+      overflow: visible;
+      position: static;
+    }
+
+    ul {
+      display: flex;
+      flex-flow: column nowrap;
+
+      @include mixins.mq-up(large) {
+        flex-flow: row wrap;
+        gap: 0 2.5rem;
+      }
+
+      li {
+        a {
+          display: block;
+          font-size: 1.2rem;
+          padding-block: 1rem;
+          padding-inline: 1.5rem;
+          position: relative;
+          transition: all variables.$s-base;
+
+          &:focus-visible,
+          &:hover,
+          &.active {
+            background: variables.$c-white;
+            color: variables.$c-blue;
+          }
+
+          @include mixins.mq-up(large) {
+            padding-block: 0.5rem;
+            padding-inline: 0;
+
+            &::after {
+              background: variables.$c-white;
+              border-radius: 0.5rem;
+              content: '';
+              display: block;
+              block-size: 2px;
+              inset-block-end: 0;
+              inset-inline-start: 50%;
+              position: absolute;
+              transition:
+                height variables.$s-base,
+                width variables.$s-base variables.$s-slow;
+              transform: translateX(-50%);
+              inline-size: 0;
+              z-index: variables.$z-neg-1;
+            }
+
+            &:focus-visible,
+            &:hover,
+            &.active {
+              background: none;
+              color: variables.$c-blue;
+              transition: all variables.$s-base variables.$s-slow;
+
+              &::after {
+                block-size: 100%;
+                transition:
+                  height variables.$s-base variables.$s-slow,
+                  width variables.$s-base;
+                inline-size: 125%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,71 @@
+import MyProjects from '../../components/sections/MyProjects.astro';
+
+export default {
+  title: 'Sections/My Projects',
+  component: MyProjects,
+  tags: ['autodocs'],
+  parameters: { layout: 'fullscreen' },
+};
+
+// Use a custom render to avoid the Image component issues
+const MyProjectsWithoutImages = {
+  render: () => `
+    <section id="projects" class="section section--projects">
+      <div class="container">
+        <div class="section__intro">
+          <div class="section__title-wrapper animate-fade">
+            <h2>My projects</h2>
+          </div>
+          <p class="animate-fade">
+            I'm excited to share some of the enterprise and commercial projects I've completed. Each
+            demonstrates my ability to deliver clean, efficient code and drive measurable results across
+            different platforms and technologies.
+          </p>
+        </div>
+        <div class="project-card-list">
+          <a href="/" class="project-card-list__item-container animate-slide">
+            <div class="project-card-list__item">
+              <div class="project-card-list__item__front">
+                <img src="https://placehold.co/800" alt="Placeholder image" loading="eager" />
+                <h3>Rapid7</h3>
+              </div>
+              <div class="project-card-list__item__back">
+                Maintained enterprise website using the Optimizely CMS platform. Delivered bug fixes,
+                responsive style updates, and content optimization across multiple components. Improved
+                site performance and user experience through targeted CSS enhancements.
+              </div>
+            </div>
+          </a>
+          <a href="/" class="project-card-list__item-container animate-slide">
+            <div class="project-card-list__item">
+              <div class="project-card-list__item__front">
+                <img src="https://placehold.co/800" alt="Placeholder image" loading="eager" />
+                <h3>California Insurance Guarantee Association</h3>
+              </div>
+              <div class="project-card-list__item__back">
+                Built responsive, reusable components for a modern React/Next.js application using
+                Tailwind CSS. Implemented utility-first styling approach, ensuring consistency across
+                the platform and reducing development time for future feature additions.
+              </div>
+            </div>
+          </a>
+          <a href="/" class="project-card-list__item-container animate-slide">
+            <div class="project-card-list__item">
+              <div class="project-card-list__item__front">
+                <img src="https://placehold.co/800" alt="Placeholder image" loading="eager" />
+                <h3>Cencora</h3>
+              </div>
+              <div class="project-card-list__item__back">
+                Developed eye-catching splash page for major brand announcement using Storybook
+                component library and GSAP animations. Created engaging visual experiences with smooth,
+                performant animations that enhanced user engagement and brand impact.
+              </div>
+            </div>
+          </a>        
+        </div>
+      </div>
+    </section>
+  `,
+};
+
+export const Default = MyProjectsWithoutImages;

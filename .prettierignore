@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.astro/
+storybook-static/
+*.min.js
+*.min.css
+.env
+.env.*
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+.git/
